@@ -9,7 +9,10 @@ from modules.selenium import *
 
 import time
 import webbrowser
+import chromedriver_autoinstaller
 
+
+chromedriver_path = chromedriver_autoinstaller.install()
 chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
 
 ############# 자동 예매 원하는 설정으로 변경 ##############
@@ -39,7 +42,7 @@ print("selenium version : ", get_selenium_version())
 
 # selenium 버전에 따른 webdriver 분기
 v1, v2, v3 = get_selenium_version().split(".")
-driver = webdriver.Chrome("chromedriver") if int(v1) < 4 else webdriver.Chrome()
+driver = webdriver.Chrome(chromedriver_path) if int(v1) < 4 else webdriver.Chrome()
 
 # 이동을 원하는 페이지 주소 입력
 driver.get('https://etk.srail.co.kr/cmc/01/selectLoginForm.do')
